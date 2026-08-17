@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UF Application Year</title>
+<meta name="description" content="Every UF research, club and study-abroad deadline on a single academic-year timeline.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-in">
+    <a href="index.html" class="brand" style="text-decoration:none;color:inherit">Explore <b>UF&nbsp;STEM</b></a>
+    <nav class="tracknav" aria-label="Sections">
+      <a class="tracklink" href="index.html">Research</a>
+      <a class="tracklink" href="clubs.html">Clubs</a>
+      <a class="tracklink" href="abroad.html">Abroad</a>
+      <a class="tracklink" href="map.html">Map</a>
+      <a class="tracklink" href="calendar.html">Calendar</a>
+      <a class="tracklink" href="playbook.html">Playbook</a>
+    </nav>
+    <span class="spinelinks"></span>
+    <span class="mastdate" title="Research compiled 16–17 August 2026. Deadlines after that date are extrapolated from the last published cycle, and every unverified claim is marked in the evidence layer."><i>Surveyed</i> Aug 2026</span>
+    <button class="skeptic" id="skepticBtn" aria-pressed="false" style="margin-left:auto">
+      <span class="dot"></span> Skeptic mode
+    </button>
+  </div>
+</header>
+<nav class="sectionnav" id="sectionnav" aria-label="On this page"></nav>
+<div class="pagehead">
+  <div class="wrap">
+    <p class="eyebrow">The application year</p>
+    <h1>Everything with a deadline, in the order it arrives</h1>
+    <p class="deck">Research, clubs and study abroad on one timeline — because they compete for the same weeks of your
+    year. Undergraduate opportunity at UF is gated less by talent than by <strong>calendar awareness</strong>.</p>
+  </div>
+</div>
+<main>
+<section id="calendar" data-nav="The year">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">All three tracks</span>
+      <h2>Research, clubs and study abroad on one timeline</h2>
+      <p class="lede">Almost every funded door opens once a year, and they cluster — thirteen deadlines land between 9 January and 15 February alone. Filter by track to see one at a time.</p>
+      <div class="rule"></div>
+    </div>
+    <div id="nextup"></div>
+    <div class="controls" id="trackbar" style="margin-bottom:1.2rem"></div>
+    <div class="yearstrip" id="yearstrip"></div>
+    <div class="months" id="months"></div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap stack gap-s">
+    <p style="max-width:70ch;margin:0">
+      Built from <b>The University of Florida STEM Research Map</b>, <b>Clubs &amp; Groups Map</b> and
+      <b>Study Abroad Map</b>, compiled August 2026. Every substantive claim traces to a linked source; contested
+      claims are marked inline and collected on the <a href="playbook.html#evidence">evidence layer</a>.
+      This is an independent reading of public information and is not affiliated with or endorsed by the
+      University of Florida.
+    </p>
+    <div class="crosslink">
+      <a href="index.html">Research map</a><a href="clubs.html">Clubs &amp; teams</a><a href="abroad.html">Study abroad</a>
+      <a href="calendar.html">The application year</a><a href="playbook.html">Playbook &amp; evidence</a>
+    </div>
+    <div class="srcline" id="srcline"></div>
+  </div>
+</footer>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

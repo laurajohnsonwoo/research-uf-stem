@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UF STEM Connections Map</title>
+<meta name="description" content="Where UF's documented partnerships, graduate destinations and absences actually are — plotted.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-in">
+    <a href="index.html" class="brand" style="text-decoration:none;color:inherit">Explore <b>UF&nbsp;STEM</b></a>
+    <nav class="tracknav" aria-label="Sections">
+      <a class="tracklink" href="index.html">Research</a>
+      <a class="tracklink" href="clubs.html">Clubs</a>
+      <a class="tracklink" href="abroad.html">Abroad</a>
+      <a class="tracklink" href="map.html">Map</a>
+      <a class="tracklink" href="calendar.html">Calendar</a>
+      <a class="tracklink" href="playbook.html">Playbook</a>
+    </nav>
+    <span class="mastdate" title="Research compiled 16–17 August 2026. Deadlines after that date are extrapolated from the last published cycle, and every unverified claim is marked in the evidence layer."><i>Surveyed</i> Aug 2026</span>
+    <button class="skeptic" id="skepticBtn" aria-pressed="false" style="margin-left:auto">
+      <span class="dot"></span> Skeptic mode
+    </button>
+  </div>
+</header>
+<nav class="sectionnav" id="sectionnav" aria-label="On this page"></nav>
+
+<div class="pagehead">
+  <div class="wrap">
+    <p class="eyebrow">The connections map · 53 US institutions · 44 person-level ties</p>
+    <h1>Mapping UF&#39;s institutional connections and absences</h1>
+    <p class="deck">Where UF's people trained, where its graduates go, which consortia it belongs to, and which
+    institutions hold the things UF does not. <b>Click any point</b> for the full list of connections.
+    A <b>hollow</b> point means every link there is an absence, and those are often the most useful points here.</p>
+  </div>
+</div>
+
+<main>
+<section id="us" data-nav="United States">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">The primary map</span>
+      <h2>Documented ties, inferred destinations, and absences</h2>
+      <p class="lede">Point size reflects how many documented connections each institution has. Caltech holds Clifford
+      Will's doctorate under Kip Thorne; Columbia both trained Brij Moudgil and now co-runs the centre he built;
+      Cambridge runs both directions — John Thompson came from there after 23 years and a Fields Medal, and UF's 10th
+      Gates Cambridge Scholar went to it. Every name links to its source and to the dossier describing the work.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="controls" id="maplayers"></div>
+    <div class="maplayout">
+      <div class="mapstage2" id="usmap"></div>
+      <aside class="mapside2">
+        <div class="legend" id="maplegend"></div>
+        <div id="mapreadout" style="border-top:1px solid var(--hair);padding-top:.9rem"></div>
+      </aside>
+    </div>
+    <div class="controls" style="margin-top:1rem">
+      <span class="pcount" id="mapcount2"></span>
+      <span class="pcount" style="margin-left:auto;max-width:52ch;text-align:right;line-height:1.5">
+        Coordinates are campus-level and approximate. They are for orientation, not navigation.
+      </span>
+    </div>
+  </div>
+</section>
+
+<section id="world" data-nav="World" class="band">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">The international footprint</span>
+      <h2>Where a semester away would put you</h2>
+      <p class="lede">Every exchange partner, research placement and fellowship destination, by region.
+      Point size is the tier the study abroad page assigns; a dashed ring means the destination is
+      <b>Spring-only</b>, which forces a decision roughly a year ahead. Hover anything for its terms and
+      the disciplines it is recommended for.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="controls" id="worldtabs"></div>
+    <div class="controls" id="worldfilters" style="margin-bottom:1rem"></div>
+    <div class="maplayout">
+      <div class="mapstage2" id="worldmap"></div>
+      <aside class="mapside2">
+        <div id="worldreadout"></div>
+      </aside>
+    </div>
+    <div class="controls" style="margin-top:1rem">
+      <span class="pcount" id="worldcount"></span>
+      <span class="pcount" style="margin-left:auto;max-width:50ch;text-align:right;line-height:1.5">
+        The full searchable table of all 55 exchange partners is on the
+        <a href="abroad.html#exchange">study abroad page</a>.
+      </span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap stack gap-s">
+    <p style="max-width:70ch;margin:0">Geography decoded at build time from public-domain Natural Earth derivatives and
+    inlined, so this page makes no external requests. US in Albers conic; world in Equal Earth.</p>
+    <div class="srcline" id="srcline"></div>
+  </div>
+</footer>
+
+<script src="assets/geo.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/mapdata.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+.DS_Store
+*.log
+node_modules/
+# large source geodata — regenerate with tools/build-geo.py
+tools/*.json

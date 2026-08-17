@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UF Research Playbook</title>
+<meta name="description" content="The escalation ladder, the cold email, three strategies, and the full verification layer.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-in">
+    <a href="index.html" class="brand" style="text-decoration:none;color:inherit">Explore <b>UF&nbsp;STEM</b></a>
+    <nav class="tracknav" aria-label="Sections">
+      <a class="tracklink" href="index.html">Research</a>
+      <a class="tracklink" href="clubs.html">Clubs</a>
+      <a class="tracklink" href="abroad.html">Abroad</a>
+      <a class="tracklink" href="map.html">Map</a>
+      <a class="tracklink" href="calendar.html">Calendar</a>
+      <a class="tracklink" href="playbook.html">Playbook</a>
+    </nav>
+    <span class="spinelinks"></span>
+    <span class="mastdate" title="Research compiled 16–17 August 2026. Deadlines after that date are extrapolated from the last published cycle, and every unverified claim is marked in the evidence layer."><i>Surveyed</i> Aug 2026</span>
+    <button class="skeptic" id="skepticBtn" aria-pressed="false" style="margin-left:auto">
+      <span class="dot"></span> Skeptic mode
+    </button>
+  </div>
+</header>
+<nav class="sectionnav" id="sectionnav" aria-label="On this page"></nav>
+<div class="pagehead">
+  <div class="wrap">
+    <p class="eyebrow">Playbook &amp; evidence</p>
+    <h1>How to get into a lab</h1>
+    <p class="deck">The escalation ladder, the email that starts it, three coherent strategies, and the full
+    verification layer for every claim across all three maps.</p>
+  </div>
+</div>
+<main>
+<section id="ladder" data-nav="The ladder">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">The playbook</span>
+      <h2>The escalation ladder and the cold email</h2>
+      <p class="lede">Each rung is built on the one below it. Nothing here requires Honors, a 4.0, or a connection —
+      it requires starting earlier than feels necessary and writing better emails than everyone else.</p>
+      <div class="rule"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2.2rem;align-items:start">
+      <div>
+        <p class="eyebrow" style="margin-bottom:.7rem">Six rungs · progress saves in this browser</p>
+        <div class="ladder" id="ladderList"></div>
+        <button class="chip clearer" id="resetLadder" style="margin-top:1rem">Reset progress</button>
+        <p class="eyebrow" style="margin:2.2rem 0 0">National fellowships · including two honest negatives</p>
+        <div class="fellows" id="fellows"></div>
+      </div>
+      <div class="stack gap-m">
+        <p class="eyebrow">The cold email · click any underlined phrase</p>
+        <div class="emailcard" id="emailcard"></div>
+        <div class="callout">
+          <span class="eyebrow">The base rate</span>
+          Build a target list of <b>7–10 PIs</b>, not one. Silence and rejection are the normal response, not a
+          verdict on you. “No current openings” is a scheduling fact about this semester — ask again at the next
+          semester boundary.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="strategies" data-nav="Three routes" class="band">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">Three routes</span>
+      <h2>Three routes worth following</h2>
+      <p class="lede">Each of these strings several domains into one story that a graduate admissions committee — or a
+      hiring manager — can follow. Click a domain to jump to its dossier.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="strats" id="strats"></div>
+  </div>
+</section>
+
+<section id="target" data-nav="Target a school">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">Working backwards from where you want to end up</span>
+      <h2>Pick the institution, then find who at UF already has the thread</h2>
+      <p class="lede">Most advice tells you to find a lab. This does the reverse: name the place you want to be in
+      five years, then work out whether anyone at UF has a real connection to it. Thirty of the forty-five
+      institutions on our map have a named person behind them, and that person is a warm introduction rather than
+      a cold application. The rest are honest about having nothing.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="searchrow">
+      <input type="search" id="targetsearch" placeholder="Search a university or a name — “MIT”, “Cambridge”, “Sumerlin”…" aria-label="Search institutions">
+      <span class="pcount" id="targetcount"></span>
+    </div>
+    <div class="targetgrid" id="targetlist"></div>
+
+    <div class="callout" style="margin-top:1.8rem">
+      <span class="eyebrow">The one region where none of this helps</span>
+      No Chinese university appears anywhere in UF's exchange list, and no UF faculty member on this map trained at
+      one. If your target is Tsinghua, Peking or USTC, there is no thread to pull and no introduction to be had.
+      That route runs through direct application instead — the Chinese Government Scholarship, Schwarzman or
+      Yenching — and it is set out in full on the <a href="abroad.html#china">study abroad page</a>.
+    </div>
+  </div>
+</section>
+
+<section id="evidence" data-nav="Evidence">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">The evidence layer</span>
+      <h2>What was verified, what was refuted, what is still open</h2>
+      <p class="lede">A second adversarial pass was run against 25 load-bearing claims. Turning on <b>Skeptic mode</b>
+      in the header marks every flagged claim inline throughout this page, so you can see exactly which sentences
+      are carrying weight they haven't earned.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="evgrid" id="evgrid"></div>
+    <div class="callout" style="margin-top:1.6rem">
+      <span class="eyebrow">Read this before quoting anything</span>
+      Every deadline for 2026–27 and 2027–28 on this page is <b>extrapolated from the last published cycle</b> and shown
+      with a dashed underline. Confirm each one directly with the program before you build a plan on it.
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap stack gap-s">
+    <p style="max-width:70ch;margin:0">
+      Built from <b>The University of Florida STEM Research Map</b>, <b>Clubs &amp; Groups Map</b> and
+      <b>Study Abroad Map</b>, compiled August 2026. Every substantive claim traces to a linked source; contested
+      claims are marked inline and collected on the <a href="playbook.html#evidence">evidence layer</a>.
+      This is an independent reading of public information and is not affiliated with or endorsed by the
+      University of Florida.
+    </p>
+    <div class="crosslink">
+      <a href="index.html">Research map</a><a href="clubs.html">Clubs &amp; teams</a><a href="abroad.html">Study abroad</a>
+      <a href="calendar.html">The application year</a><a href="playbook.html">Playbook &amp; evidence</a>
+    </div>
+    <div class="srcline" id="srcline"></div>
+  </div>
+</footer>
+<script src="assets/data.js"></script>
+<script src="assets/mapdata.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

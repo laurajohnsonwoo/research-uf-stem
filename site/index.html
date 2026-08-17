@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UF STEM Research Map</title>
+<meta name="description" content="Twenty-one UF research domains plotted by standing against how hard it is for an undergraduate to get in.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-in">
+    <a href="index.html" class="brand" style="text-decoration:none;color:inherit">Explore <b>UF&nbsp;STEM</b></a>
+    <nav class="tracknav" aria-label="Sections">
+      <a class="tracklink" href="index.html">Research</a>
+      <a class="tracklink" href="clubs.html">Clubs</a>
+      <a class="tracklink" href="abroad.html">Abroad</a>
+      <a class="tracklink" href="map.html">Map</a>
+      <a class="tracklink" href="calendar.html">Calendar</a>
+      <a class="tracklink" href="playbook.html">Playbook</a>
+    </nav>
+    <span class="spinelinks"></span>
+    <span class="mastdate" title="Research compiled 16–17 August 2026. Deadlines after that date are extrapolated from the last published cycle, and every unverified claim is marked in the evidence layer."><i>Surveyed</i> Aug 2026</span>
+    <button class="skeptic" id="skepticBtn" aria-pressed="false" style="margin-left:auto">
+      <span class="dot"></span> Skeptic mode
+    </button>
+  </div>
+</header>
+<nav class="sectionnav" id="sectionnav" aria-label="On this page"></nav>
+<div class="hero">
+  <canvas id="contours" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <p class="eyebrow">University of Florida · Surveyed August 2026 · 21 domains · 26 clubs · 55 exchange destinations</p>
+    <h1>UF's elite pockets are narrow, specific, and open to undergraduates.</h1>
+    <p class="deck">
+      UF spends <span class="num">$1.33&nbsp;billion</span> a year on research across 16 colleges, so almost every field
+      has <em>someone</em> doing good work. That fact is useless for deciding where to spend four years.
+      <strong>The right question is not “should I do research at UF.” It is “which of the eight genuinely
+      world-class pockets fits me, and how do I get into that specific building.”</strong>
+    </p>
+    <div class="statstrip" id="statstrip"></div>
+    <div class="crosslink">
+      <a href="clubs.html">Clubs &amp; teams →</a><a href="abroad.html">Study abroad →</a>
+      <a href="calendar.html">Every deadline →</a><a href="playbook.html">How to get in →</a>
+    </div>
+  </div>
+</div>
+<main>
+<section id="gap" data-nav="The gap">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">Why this map exists</span>
+      <h2>The gap inside UF is bigger than the gap between UF and an Ivy</h2>
+      <p class="lede">Choosing a university is the decision everyone agonises over. Choosing a <em>lab</em> is the decision
+      that actually sets the training you get. At UF those two decisions are not remotely the same size.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="panel gapfig" id="gapfig"></div>
+    <p class="prose" style="margin-top:1.5rem;color:var(--ink-2);font-size:.95rem">
+      A student in the Florida Museum's Soltis Lab or the LIGO instrumentation group is training in a top-3-in-the-world
+      environment. A student doing generic machine-learning coursework research at UF is training in a roughly
+      top-60 environment. Same tuition, same transcript, same campus. This map exists to tell those two situations apart.
+    </p>
+  </div>
+</section>
+
+<section id="map" data-nav="Focus map" class="band">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">The focus map</span>
+      <h2>Standing against access friction</h2>
+      <p class="lede">Every domain sits at the intersection of two questions students usually blur together:
+      <em>how good is this, really</em>, and <em>how hard is it for an undergraduate to get inside</em>.
+      The top-left corner is where those answers are best. Filter by what you actually like, then click a point.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="controls" id="tagbar"></div>
+
+    <div class="maplayout">
+      <div class="mapstage" id="mapstage"></div>
+      <aside class="mapside">
+        <div class="legend" id="legend"></div>
+        <div id="readout"><p class="ro-hint">Hover or tap any point to read it. Click to open its full dossier.</p></div>
+      </aside>
+    </div>
+
+    <div class="controls" style="margin-top:1rem">
+      <button class="chip" id="tableToggle" aria-pressed="false">Show as table</button>
+      <span class="pcount" id="mapcount"></span>
+      <span class="pcount" style="margin-left:auto;max-width:46ch;text-align:right;line-height:1.5">
+        Positions are editorial judgments built from the evidence in each dossier, not measurements.
+      </span>
+    </div>
+    <div class="tablewrap" id="maptable" hidden></div>
+  </div>
+</section>
+
+<section id="dossiers" data-nav="Dossiers">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">Dossiers</span>
+      <h2>What is inside each pocket</h2>
+      <p class="lede">People, infrastructure, the honest verdict, and, the part most guides omit — exactly how an
+      undergraduate gets through the door. Pick a domain from the index; filters carry over from the map.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="controls" id="dosscontrols"></div>
+    <div class="dosslayout">
+      <nav class="dossrail" id="dossrail" aria-label="Domain index"></nav>
+      <article class="reader" id="reader" tabindex="-1"></article>
+    </div>
+  </div>
+</section>
+
+<section id="outcomes" data-nav="Where it leads" class="band">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">Where each pocket leads</span>
+      <h2>What four years in this specific building is worth</h2>
+      <p class="lede">Standing and access are only half the decision. The other half is what the credential does for you
+      afterwards — which graduate programs it genuinely opens, and which employers hire for the exact thing you learned.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="inference">
+      <span class="eyebrow">Read this first · inferred, not sourced</span>
+      The research map documents <b>standing and access</b>. It contains no outcome data, and nobody publicly tracks where
+      UF undergraduates from these labs actually end up. Everything below is reasoning from the evidence in the dossiers:
+      who writes your letters, which collaborations already exist, which techniques are scarce, and which sectors currently
+      hire for them. <b>Named programs and employers are illustrative of a category, not placement records.</b>
+      Treat this as a well-argued hypothesis about where a door leads — then go verify it with someone who walked through it.
+    </div>
+
+    <p class="eyebrow" style="margin-bottom:.8rem">The lineage that travels · click a name for its dossier</p>
+    <div class="lineage" id="lineage"></div>
+
+    <p class="eyebrow" style="margin-bottom:.4rem">Domain by domain · filters carry over</p>
+    <div class="controls" id="outcontrols"></div>
+    <div id="outrows"></div>
+  </div>
+</section>
+
+<section id="people" data-nav="People" class="band">
+  <div class="wrap">
+    <div class="plate-head">
+      <span class="eyebrow">Index</span>
+      <h2>Every named researcher on this map</h2>
+      <p class="lede">Search by name, honor, technique, or organism. If someone is here, there is a specific reason
+      they were worth naming, and a dossier explaining it.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="controls" id="peoplecontrols"></div>
+    <div class="searchrow">
+      <input type="search" id="psearch" placeholder="Search 200+ entries — try “NAS”, “RNA”, “hurricane”, “Bayesian”, “CAREER”…" aria-label="Search researchers">
+      <span class="pcount" id="pcount"></span>
+    </div>
+    <div class="pindex" id="pindex"></div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap stack gap-s">
+    <p style="max-width:70ch;margin:0">
+      Built from <b>The University of Florida STEM Research Map</b>, <b>Clubs &amp; Groups Map</b> and
+      <b>Study Abroad Map</b>, compiled August 2026. Every substantive claim traces to a linked source; contested
+      claims are marked inline and collected on the <a href="playbook.html#evidence">evidence layer</a>.
+      This is an independent reading of public information and is not affiliated with or endorsed by the
+      University of Florida.
+    </p>
+    <div class="crosslink">
+      <a href="index.html">Research map</a><a href="clubs.html">Clubs &amp; teams</a><a href="abroad.html">Study abroad</a>
+      <a href="calendar.html">The application year</a><a href="playbook.html">Playbook &amp; evidence</a>
+    </div>
+    <div class="srcline" id="srcline"></div>
+  </div>
+</footer>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
