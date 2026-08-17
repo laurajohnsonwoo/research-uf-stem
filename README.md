@@ -18,8 +18,9 @@ argument and the sources; the site turns them into something you can navigate, f
 |---|---|
 | `docs/` | The four research documents. Every substantive claim carries a source link, and each ends with a verification-flag section listing what could **not** be confirmed. |
 | `site/` | The static site — six pages, no framework, no dependencies, no build. |
-| `dev/` | Development notes for the parts that aren't obvious: architecture, the map pipeline, the gator, and the copy audit. |
+| `dev/` | Development notes: architecture, the map pipeline, the gator, the copy audit, and the agent playbook. |
 | `tools/` | Two runnable scripts: the geography build and the copy audit. |
+| `campaign/` | Persistent workspace for agent-assisted work — targets, outreach log, decisions. Gitignored by default. |
 | `archive/` | The original single-file prototype, kept for reference. |
 
 ## The four documents
@@ -59,6 +60,38 @@ every flagged claim inline across the whole site.
 
 A map that only showed the good news would be marketing. The absences are frequently the most
 useful thing on the page.
+
+## Hand this to an agent
+
+This repo is built to be given to a coding agent — Claude Code, Codex, Cursor, whatever you use —
+as the context for a campaign that runs over semesters rather than a single conversation.
+
+Clone it, open it in your agent, and start there. It will read [`AGENTS.md`](AGENTS.md)
+automatically for how to work in the repo. You should read
+[`dev/AGENT-PLAYBOOK.md`](dev/AGENT-PLAYBOOK.md) for what to ask it.
+
+**A reasonable first prompt:**
+
+> Read `docs/UF-STEM-Research-Map.md` and `AGENTS.md`. I'm a [year] in [major], I care about
+> [what you actually care about], and I'm aiming for [PhD / industry / undecided]. Give me five
+> targets ranked, tell me what you're trading off in each, and write the shortlist to
+> `campaign/targets.md` with your reasoning in `campaign/decisions.md`.
+
+From there the useful asks cluster into phases — orientation, outreach, closing the open evidence
+flags, extending the research, and keeping it from going stale. The playbook covers each with
+example prompts.
+
+**Why this works better than pasting a document into a chat.** The agent gets ~200 named
+researchers with sources, 44 documented person-level ties between UF and other institutions,
+every dated deadline, and — the part that matters most — an explicit list of roughly 30 things the
+research could *not* confirm. It knows what it doesn't know, which is what stops it inventing.
+
+**The state lives in `campaign/`**, so the follow-up conversation in January knows what you sent
+in September. It's gitignored by default, since outreach notes are personal.
+
+**One boundary worth stating plainly:** the agent drafts, researches, tracks and reminds. It does
+not email professors, submit applications, or accept anything on your behalf. Every outward action
+is yours to take.
 
 ## Contributing content
 

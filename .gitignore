@@ -3,3 +3,7 @@
 node_modules/
 # large source geodata — regenerate with tools/build-geo.py
 tools/*.json
+
+# campaign notes are personal by default — remove this line to version them
+campaign/*
+!campaign/README.md
