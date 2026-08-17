@@ -209,8 +209,8 @@ function drawGap() {
      anchor: "start", level: 0, key: true},
     {r: 60, lbl: "Generic ML research at UF", sub: "roughly top 60",
      anchor: "end", level: 0},
-    {r: 30, lbl: "UF overall", sub: "#30 national · #7 public",
-     anchor: "middle", level: 1}
+    {r: 30, lbl: "UF overall", sub: "institutional rank, not a lab measure",
+     anchor: "middle", level: 1, ref: true}
   ];
   const LEVEL = [{name: 76, sub: 98}, {name: 124, sub: 146}];   // 22u apart, room for 16px type
 
@@ -222,12 +222,13 @@ function drawGap() {
 
   const pts = marks.map(m => {
     const x = pos(m.r), lv = LEVEL[m.level];
-    const c = m.key ? "var(--t1)" : m.r >= 60 ? "var(--t3)" : "var(--t2)";
-    return `<g class="gf-mark">
+    const c = m.key ? "var(--t1)" : m.r >= 60 ? "var(--t3)" : "var(--ink-2)";
+    return `<g class="gf-mark${m.ref ? " is-ref" : ""}">
       <line x1="${x}" y1="${lv.sub + 8}" x2="${x}" y2="${AX - 9}"
-            stroke="${c}" stroke-width="1" stroke-dasharray="2 4" opacity=".55"/>
-      <circle cx="${x}" cy="${AX}" r="${m.key ? 7.5 : 6}" fill="${c}"
-              stroke="var(--surface)" stroke-width="2.5"/>
+            stroke="${c}" stroke-width="1" stroke-dasharray="2 4" opacity="${m.ref ? ".35" : ".55"}"/>
+      <circle cx="${x}" cy="${AX}" r="${m.key ? 7.5 : m.ref ? 5 : 6}"
+              fill="${m.ref ? "var(--plot)" : c}" stroke="${m.ref ? c : "var(--surface)"}"
+              stroke-width="${m.ref ? 1.8 : 2.5}"/>
       <text x="${x}" y="${lv.name}" text-anchor="${m.anchor}" class="gf-name"
             ${m.key ? 'style="font-weight:700"' : ""}>${esc(m.lbl)}</text>
       <text x="${x}" y="${lv.sub}" text-anchor="${m.anchor}" class="gf-sub" fill="${c}">${esc(m.sub)}</text>
@@ -242,11 +243,17 @@ function drawGap() {
       <text x="${(gA + gB) / 2}" y="24" text-anchor="middle" class="gf-bracket-l">The gap inside UF</text>
     </g>`;
 
+  const note = $("#gapnote");
+  if (note) {
+    note.innerHTML = claim("The two outer points are what this figure is about; UF's own ranking sits between them as a reference, drawn hollow because it measures a different thing.", "gap-scale");
+    note.querySelectorAll(".claim").forEach(() => {});
+  }
+
   host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img"
       aria-label="A logarithmic rank axis from #1 to #100. The Soltis Lab and LIGO instrumentation sit at about rank 3; UF overall sits at rank 30; generic machine-learning research at UF sits at about rank 60. The span between the two internal positions is marked as the gap inside UF.">
     <line x1="${L}" y1="${AX}" x2="${W - R}" y2="${AX}" stroke="var(--rule)" stroke-width="1.5"/>
     ${ticks}${bracket}${pts}
-    <text x="${W - R}" y="${AX + 64}" text-anchor="end" class="gf-axis">Approximate standing of the training environment →</text>
+    <text x="${W - R}" y="${AX + 64}" text-anchor="end" class="gf-axis">Approximate · logarithmic · frames differ →</text>
   </svg>`;
 }
 

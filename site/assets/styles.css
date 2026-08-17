@@ -830,3 +830,5 @@ tr.c9-key td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 .mastdate:hover { color: var(--ink-2); border-bottom-color: var(--rule); }
 .masthead-in .skeptic { margin-left: 1rem !important; }
 @media (max-width: 900px) { .mastdate { display: none; } }
+.figcaption { font-size: .84rem; color: var(--ink-3); line-height: 1.55; margin: .7rem 0 0; max-width: 74ch; }
+.gf-mark.is-ref .gf-name { font-weight: 500; fill: var(--ink-2); }
