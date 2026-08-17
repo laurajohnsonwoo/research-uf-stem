@@ -192,51 +192,62 @@ function drawContours() {
    THE GAP FIGURE — one rank axis, three positions
    ============================================================================ */
 function drawGap() {
+  const host = $("#gapfig");
+  if (!host) return;
+
+  /* One logarithmic rank axis, three positions on it. All three labels sit ABOVE
+     the axis on two levels — an earlier version pushed the middle one below,
+     where it competed with the tick labels and the caption for the same strip of
+     space. Levels are assigned so the two right-hand labels, which are only
+     ~140px apart, never share a line. */
+  const W = 1000, H = 268, L = 60, R = 60;
+  const AX = 182;                                   // axis baseline
+  const pos = r => L + (Math.log10(r) / 2) * (W - L - R);
+
   const marks = [
-    {r: 3,  lbl: "Soltis Lab · LIGO instrumentation", sub: "top 3 in the world", key: true},
-    {r: 30, lbl: "UF overall", sub: "#30 national · #7 public"},
-    {r: 60, lbl: "Generic ML research at UF", sub: "roughly top 60"}
+    {r: 3,  lbl: "Soltis Lab · LIGO instrumentation", sub: "top 3 in the world",
+     anchor: "start", level: 0, key: true},
+    {r: 60, lbl: "Generic ML research at UF", sub: "roughly top 60",
+     anchor: "end", level: 0},
+    {r: 30, lbl: "UF overall", sub: "#30 national · #7 public",
+     anchor: "middle", level: 1}
   ];
-  const W = 1000, H = 210, L = 24, R = 24, TOP = 62, AX = 132;
-  const pos = r => L + (Math.log10(r) / Math.log10(100)) * (W - L - R);
-  const t1 = "var(--t1)", t3 = "var(--t3)";
+  const LEVEL = [{name: 76, sub: 98}, {name: 124, sub: 146}];   // 22u apart, room for 16px type
 
-  let ticks = "";
-  [1, 3, 10, 30, 100].forEach(v => {
+  const ticks = [1, 3, 10, 30, 100].map(v => {
     const x = pos(v);
-    ticks += `<line x1="${x}" y1="${AX - 6}" x2="${x}" y2="${AX + 6}" stroke="var(--rule)" stroke-width="1"/>
-              <text x="${x}" y="${AX + 22}" class="axlabel" text-anchor="middle">#${v}</text>`;
-  });
+    return `<line x1="${x}" y1="${AX - 5}" x2="${x}" y2="${AX + 5}" stroke="var(--rule)"/>
+            <text x="${x}" y="${AX + 26}" class="gf-tick" text-anchor="middle">#${v}</text>`;
+  }).join("");
 
-  let pts = "", i = 0;
-  marks.forEach(m => {
-    const x = pos(m.r), c = m.key ? t1 : (m.r > 40 ? t3 : "var(--ink-3)");
-    const up = i !== 1;
-    const ty = up ? TOP - 8 : AX + 52;
-    const anchor = i === 0 ? "start" : (i === 2 ? "end" : "middle");
-    const dx = i === 0 ? 0 : (i === 2 ? 0 : 0);
-    pts += `<line x1="${x}" y1="${up ? ty + 6 : AX + 8}" x2="${x}" y2="${up ? AX - 8 : ty - 30}" stroke="${c}" stroke-width="1.5" stroke-dasharray="3 3" opacity=".7"/>
-      <circle cx="${x}" cy="${AX}" r="7" fill="${c}" stroke="var(--surface)" stroke-width="2"/>
-      <text x="${x + dx}" y="${ty}" text-anchor="${anchor}" fill="var(--ink)" font-family="var(--body)" font-size="15" font-weight="650">${esc(m.lbl)}</text>
-      <text x="${x + dx}" y="${ty + 18}" text-anchor="${anchor}" fill="${c}" font-family="var(--mono)" font-size="11.5" letter-spacing=".05em">${esc(m.sub)}</text>`;
-    i++;
-  });
+  const pts = marks.map(m => {
+    const x = pos(m.r), lv = LEVEL[m.level];
+    const c = m.key ? "var(--t1)" : m.r >= 60 ? "var(--t3)" : "var(--t2)";
+    return `<g class="gf-mark">
+      <line x1="${x}" y1="${lv.sub + 8}" x2="${x}" y2="${AX - 9}"
+            stroke="${c}" stroke-width="1" stroke-dasharray="2 4" opacity=".55"/>
+      <circle cx="${x}" cy="${AX}" r="${m.key ? 7.5 : 6}" fill="${c}"
+              stroke="var(--surface)" stroke-width="2.5"/>
+      <text x="${x}" y="${lv.name}" text-anchor="${m.anchor}" class="gf-name"
+            ${m.key ? 'style="font-weight:700"' : ""}>${esc(m.lbl)}</text>
+      <text x="${x}" y="${lv.sub}" text-anchor="${m.anchor}" class="gf-sub" fill="${c}">${esc(m.sub)}</text>
+    </g>`;
+  }).join("");
 
-  const xa = pos(3), xb = pos(60), xc = pos(30);
-  const bracket = `
-    <g opacity=".95">
-      <line x1="${xa}" y1="26" x2="${xb}" y2="26" stroke="var(--signal)" stroke-width="1.5"/>
-      <line x1="${xa}" y1="26" x2="${xa}" y2="34" stroke="var(--signal)" stroke-width="1.5"/>
-      <line x1="${xb}" y1="26" x2="${xb}" y2="34" stroke="var(--signal)" stroke-width="1.5"/>
-      <text x="${(xa + xb) / 2}" y="18" text-anchor="middle" class="axlabel" fill="var(--signal)">The gap inside UF</text>
+  const gA = pos(3), gB = pos(60);
+  const bracket = `<g class="gf-bracket">
+      <line x1="${gA}" y1="36" x2="${gB}" y2="36"/>
+      <line x1="${gA}" y1="36" x2="${gA}" y2="44"/>
+      <line x1="${gB}" y1="36" x2="${gB}" y2="44"/>
+      <text x="${(gA + gB) / 2}" y="24" text-anchor="middle" class="gf-bracket-l">The gap inside UF</text>
     </g>`;
 
-  $("#gapfig").innerHTML = `
-    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="A logarithmic rank axis from #1 to #100. Soltis Lab and LIGO instrumentation sit at roughly rank 3. UF overall sits at rank 30. Generic machine-learning research at UF sits at roughly rank 60. The distance between the two internal positions is far larger than the distance between UF overall and the top of the axis.">
-      <line x1="${L}" y1="${AX}" x2="${W - R}" y2="${AX}" stroke="var(--rule)" stroke-width="1.5"/>
-      ${ticks}${bracket}${pts}
-      <text x="${W - R}" y="${AX + 40}" text-anchor="end" class="axlabel">Approximate standing of the training environment →</text>
-    </svg>`;
+  host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img"
+      aria-label="A logarithmic rank axis from #1 to #100. The Soltis Lab and LIGO instrumentation sit at about rank 3; UF overall sits at rank 30; generic machine-learning research at UF sits at about rank 60. The span between the two internal positions is marked as the gap inside UF.">
+    <line x1="${L}" y1="${AX}" x2="${W - R}" y2="${AX}" stroke="var(--rule)" stroke-width="1.5"/>
+    ${ticks}${bracket}${pts}
+    <text x="${W - R}" y="${AX + 64}" text-anchor="end" class="gf-axis">Approximate standing of the training environment →</text>
+  </svg>`;
 }
 
 /* ============================================================================

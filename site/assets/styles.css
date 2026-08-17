@@ -235,8 +235,21 @@ body.skeptic-on .claim sup { color: var(--signal); }
 /* ============================================================
    THE GAP FIGURE
    ============================================================ */
-.gapfig { padding: 1.6rem 1.4rem 1.2rem; }
-.gapfig svg { width: 100%; height: auto; display: block; overflow: visible; }
+/* The gap figure. Type is set here rather than inline so it scales with the
+   design system, and the SVG no longer needs overflow:visible — everything is
+   inside the viewBox with real margins. */
+.gapfig { padding: 1.9rem 2rem 1.7rem; }
+.gapfig svg { width: 100%; height: auto; display: block; }
+.gf-tick { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; fill: var(--ink-3); }
+.gf-name { font-family: var(--body); font-size: 16px; font-weight: 620; fill: var(--ink); }
+.gf-sub  { font-family: var(--mono); font-size: 12.5px; letter-spacing: .04em; }
+.gf-axis { font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em;
+  text-transform: uppercase; fill: var(--ink-3); }
+.gf-bracket line { stroke: var(--signal); stroke-width: 1.5; }
+.gf-bracket-l { font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em;
+  text-transform: uppercase; fill: var(--signal); font-weight: 600; }
+.gf-mark circle { transition: r .15s ease; }
+@media (max-width: 700px) { .gapfig { padding: 1.2rem 1rem; } }
 
 /* ============================================================
    MAP
