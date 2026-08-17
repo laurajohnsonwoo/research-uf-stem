@@ -1,3 +1,13 @@
+/* Build stamp — check this in the console to confirm which version is deployed.
+   Bump it (and the ?v= query on the asset tags) whenever you publish. */
+window.__build = "2026-08-17";
+
+/* The browser default restores your previous scroll position on reload, which on
+   a page this long lands you deep in the middle with no explanation. Scroll
+   position here is controlled explicitly: no hash means top, #d-<id> means that
+   dossier. Take manual control so the two do not fight. */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
 
 /* ============================================================================
    HELPERS
