@@ -1,0 +1,30 @@
+# Netlify config. This lives inside site/ because site/ is what you deploy — drag
+# that folder, not the repo root, or index.html will not be at the root and every
+# page 404s.
+#
+# On a drag-and-drop deploy the [build] block is ignored (there is nothing to
+# build). The headers below still apply.
+
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=()"
+
+# Assets are not fingerprinted — a filename never changes when its contents do —
+# so nothing may be cached without revalidating, or a redeploy would serve stale
+# JavaScript against new HTML.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=600, must-revalidate"

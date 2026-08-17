@@ -93,6 +93,49 @@ in September. It's gitignored by default, since outreach notes are personal.
 not email professors, submit applications, or accept anything on your behalf. Every outward action
 is yours to take.
 
+## Deploying — drag and drop
+
+The site is plain static files with no build step, so it deploys by dragging a folder onto a host.
+
+**Drag the `site/` folder — not the repo root.** The repo root has no `index.html` at its top
+level, so dropping the whole thing gives you a 404 on every page.
+
+### Netlify
+
+1. Go to <https://app.netlify.com/drop>
+2. Drag the **`site/`** folder onto the page
+3. It is live in a few seconds on a random `*.netlify.app` URL
+
+No account is required to deploy, though you will want one to keep the URL, rename the site, or
+add a custom domain. To update, drag the folder again — same page, same steps.
+
+`site/netlify.toml` is already configured with security headers and cache rules. Assets are not
+fingerprinted (a filename never changes when its contents do), so it tells the CDN to revalidate
+rather than serve stale JavaScript against new HTML after a redeploy.
+
+### Anywhere else
+
+The same folder works unchanged on Cloudflare Pages (drag onto *Upload assets*), GitHub Pages,
+Vercel, S3, or any nginx docroot. Every path in the site is relative, so it also works from a
+subdirectory — `example.com/uf-map/` needs no changes.
+
+To check it locally before deploying:
+
+```bash
+cd site && python3 -m http.server 8000
+```
+
+### What is in the deployed folder
+
+```
+site/           ~700 KB total, 6 pages + a 404
+  assets/       styles, data, renderers, and the projected geography
+  netlify.toml  headers and caching
+  404.html      styled to match, links back to the six pages
+```
+
+`site/README.md` ships with it and is harmless — it is never served unless something links to it.
+
 ## Contributing content
 
 Almost everything lives in `site/assets/data.js` and `site/assets/mapdata.js`. Add a domain to
