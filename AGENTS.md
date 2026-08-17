@@ -14,6 +14,10 @@ Two things at once:
 
 The research is the substrate. The campaign is the work.
 
+If you are asked to run this method on a **different institution**, read [`method/`](method/README.md)
+first — the tiering rubric and access-friction scale are there, and applying them loosely is the
+main way this produces something worthless.
+
 ## The one rule
 
 **Every substantive claim is either sourced or flagged. There is no third category.**

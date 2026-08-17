@@ -18,6 +18,7 @@ argument and the sources; the site turns them into something you can navigate, f
 |---|---|
 | `docs/` | The four research documents. Every substantive claim carries a source link, and each ends with a verification-flag section listing what could **not** be confirmed. |
 | `site/` | The static site — six pages, no framework, no dependencies, no build. |
+| `method/` | **The transferable part.** How to run this on any institution — the tiering rubric, the access-friction scale, the evidence discipline, and the runbook. |
 | `dev/` | Development notes: architecture, the map pipeline, the gator, the copy audit, and the agent playbook. |
 | `tools/` | Two runnable scripts: the geography build and the copy audit. |
 | `campaign/` | Persistent workspace for agent-assisted work — targets, outreach log, decisions. Gitignored by default. |
@@ -144,6 +145,19 @@ pages pick it up automatically. See [`dev/ARCHITECTURE.md`](dev/ARCHITECTURE.md)
 
 If you add a claim, add its source. If you cannot source it, add a flag to `FLAGS` and reference
 it — an honestly-marked gap is worth more than a confident guess.
+
+## Running this on another institution
+
+The UF work is one worked example. [`method/`](method/README.md) is the part that transfers — the
+tiering rubric, the access-friction scale, the evidence discipline, a research protocol, and a
+step-by-step runbook with effort estimates.
+
+The engineering is close to free: swap `data.js` and `mapdata.js` and the site works. Roughly
+60–70% of the effort is research, 30% is judgment, and the site is reuse.
+
+If you do run it somewhere else, [`method/07-runbook.md`](method/07-runbook.md) makes one
+recommendation worth repeating here: **pick a second institution where you expect the honest answer
+to be less flattering.** A method that only produces "this place is great" has not been tested.
 
 ## Licence and provenance
 

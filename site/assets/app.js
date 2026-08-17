@@ -525,8 +525,17 @@ function selectDomain(id, scroll, updateHash) {
   if (!byId(id)) return;
   state.sel = id;
   renderReader(id);
+  /* Keep the selected row visible inside the rail WITHOUT moving the document.
+     scrollIntoView scrolls every scrollable ancestor, the page included, so at
+     boot this dragged the whole page down to the rail — the site opened ~2000px
+     scrolled. Adjust the rail's own overflow instead. */
   const row = $(`#dossrail .railitem[data-id="${id}"]`);
-  if (row) row.scrollIntoView({block: "nearest"});
+  const rail = $("#dossrail");
+  if (row && rail) {
+    const rr = rail.getBoundingClientRect(), br = row.getBoundingClientRect();
+    if (br.top < rr.top)          rail.scrollTop += br.top - rr.top - 8;
+    else if (br.bottom > rr.bottom) rail.scrollTop += br.bottom - rr.bottom + 8;
+  }
   if (scroll) {
     $("#reader").scrollIntoView({behavior: "smooth", block: "start"});
     $("#reader").focus({preventScroll: true});
@@ -988,7 +997,12 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => setT
 if (has("#dossrail")) {
   const fromHash = () => (location.hash.startsWith("#d-") ? location.hash.slice(3) : null);
   addEventListener("hashchange", () => { const id = fromHash(); if (id && id !== state.sel) selectDomain(id, true); });
-  selectDomain(fromHash() || ORDER[0].id, false);
+  /* Arriving with #d-<id> is a deep link and should land you on the dossier;
+     arriving with no hash should leave you at the top of the page. Passing
+     `false` unconditionally meant a shared link selected the right entry and
+     then left the reader off-screen. */
+  const initial = fromHash();
+  selectDomain(initial || ORDER[0].id, !!initial, false);
 }
 
 /* mark the current page in the masthead */
